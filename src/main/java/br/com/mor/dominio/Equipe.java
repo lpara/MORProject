@@ -1,11 +1,13 @@
 package br.com.mor.dominio;
 
 import javax.persistence.Column;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table(name="staff")
 public class Equipe {
 
+	@Id
 	@Column(name="staff_id")
 	private int id_equipe;
 	
