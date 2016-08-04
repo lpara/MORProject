@@ -1,27 +1,25 @@
 package br.com.mor.dominio;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="category")
-public class Categoria {
+@Table(name="language")
+public class Idioma {
 
 	@Id
-	@Column(name="category_id")
-	private int id_categoria;
+	@Column(name="language_id")
+	private int id_idioma;
 	
 	@Column(name="name")
 	private String nome;
 
-	public int getIdCategoria() {
-		return id_categoria;
+	public int getId_idioma() {
+		return id_idioma;
 	}
 
-	public void setIdCategoria(int id) {
-		this.id_categoria = id;
+	public void setId_idioma(int id_idioma) {
+		this.id_idioma = id_idioma;
 	}
 
 	public String getNome() {
