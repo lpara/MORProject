@@ -1,13 +1,18 @@
 package br.com.mor.dominio;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Table(name="film")
 public class Filme {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="filme_seq")
+	@SequenceGenerator(name="filme_seq", sequenceName="film_film_id_seq")
 	@Column(name="film_id")
 	private int id_filme;
 	

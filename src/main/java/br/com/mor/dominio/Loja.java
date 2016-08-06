@@ -2,7 +2,10 @@ package br.com.mor.dominio;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -10,6 +13,8 @@ import javax.persistence.Table;
 public class Loja {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="loja_seq")
+	@SequenceGenerator(name="loja_seq", sequenceName="store_store_id_seq")
 	@Column(name="store_id")
 	private int id_loja;
 	

@@ -3,13 +3,18 @@ package br.com.mor.dominio;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Table(name="payment")
 public class Pagamento {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="pagamento_seq")
+	@SequenceGenerator(name="pagamento_seq", sequenceName="payment_payment_id_seq")
 	@Column(name="payment_id")
 	private int id_pagamento;
 	
