@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -20,8 +22,11 @@ public class Cliente {
 	@Column(name="cutomer_id")
 	private int id_cliente;
 	
-	@Column(name="store_id")
-	private int id_loja;
+	//Comentado, pois não está representado no mapeamento das entidades enviado pelo professor
+	//e pelas caracteristicas das entidades essa releção seria de ManyToMany que necessitaria de
+	//uma tabela intermediária, coisa que não existe no diagrama.
+	/*@Column(name="store_id")
+	private int id_loja;*/
 	
 	@Column(name="first_name")
 	private String nome;
@@ -31,8 +36,9 @@ public class Cliente {
 	
 	private String email;
 	
-	@Column(name="address_id")
-	private int id_endereco;
+	@ManyToOne
+	@JoinColumn(name="address_id")
+	private Endereco endereco;
 	
 	@Column(name="activebool")
 	private boolean ativo;
@@ -48,13 +54,13 @@ public class Cliente {
 		this.id_cliente = id_cliente;
 	}
 
-	public int getId_loja() {
+	/*public int getId_loja() {
 		return id_loja;
 	}
 
 	public void setId_loja(int id_loja) {
 		this.id_loja = id_loja;
-	}
+	}*/
 
 	public String getNome() {
 		return nome;
@@ -80,12 +86,12 @@ public class Cliente {
 		this.email = email;
 	}
 
-	public int getId_endereco() {
-		return id_endereco;
+	public Endereco getEndereco() {
+		return endereco;
 	}
 
-	public void setId_endereco(int id_endereco) {
-		this.id_endereco = id_endereco;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	public boolean isAtivo() {

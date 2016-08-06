@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -18,11 +20,14 @@ public class Loja {
 	@Column(name="store_id")
 	private int id_loja;
 	
+	@OneToOne
+	@JoinColumn(name="staff_id")
 	@Column(name="manager_staff_id")
-	private int id_gerente_equipe;
+	private Equipe gerente_equipe;
 	
-	@Column(name="address_id")
-	private int id_endereco;
+	@OneToOne
+	@JoinColumn(name="address_id")
+	private Endereco endereco;
 
 	public int getId_loja() {
 		return id_loja;
@@ -32,19 +37,19 @@ public class Loja {
 		this.id_loja = id_loja;
 	}
 
-	public int getId_gerente_equipe() {
-		return id_gerente_equipe;
+	public Equipe getGerente_equipe() {
+		return gerente_equipe;
 	}
 
-	public void setId_gerente_equipe(int id_gerente_equipe) {
-		this.id_gerente_equipe = id_gerente_equipe;
+	public void setGerente_equipe(Equipe gerente_equipe) {
+		this.gerente_equipe = gerente_equipe;
 	}
 
-	public int getId_endereco() {
-		return id_endereco;
+	public Endereco getEndereco() {
+		return endereco;
 	}
 
-	public void setId_endereco(int id_endereco) {
-		this.id_endereco = id_endereco;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 }

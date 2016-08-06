@@ -6,6 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -21,17 +24,20 @@ public class Aluguel {
 	@Column(name="rental_date")
 	private Date data_aluguel;
 	
-	@Column(name="inventory_id")
-	private int id_inventario;
+	@OneToOne
+	@JoinColumn(name="inventory_id")
+	private Inventario inventario;
 	
-	@Column(name="customer_id")
-	private int id_cliente;
+	@OneToOne
+	@JoinColumn(name="customer_id")
+	private Cliente cliente;
 	
 	@Column(name="return_date")
 	private Date data_devolucao;
 	
-	@Column(name="staff_id")
-	private int id_equipe;
+	@ManyToOne
+	@JoinColumn(name="staff_id")
+	private Equipe equipe;
 
 	public int getId_aluguel() {
 		return id_aluguel;
@@ -49,20 +55,20 @@ public class Aluguel {
 		this.data_aluguel = data_aluguel;
 	}
 
-	public int getId_inventario() {
-		return id_inventario;
+	public Inventario getInventario() {
+		return inventario;
 	}
 
-	public void setId_inventario(int id_inventario) {
-		this.id_inventario = id_inventario;
+	public void setInventario(Inventario inventario) {
+		this.inventario = inventario;
 	}
 
-	public int getId_cliente() {
-		return id_cliente;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setId_cliente(int id_cliente) {
-		this.id_cliente = id_cliente;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public Date getData_devolucao() {
@@ -73,11 +79,12 @@ public class Aluguel {
 		this.data_devolucao = data_devolucao;
 	}
 
-	public int getId_equipe() {
-		return id_equipe;
+	public Equipe getEquipe() {
+		return equipe;
 	}
 
-	public void setId_equipe(int id_equipe) {
-		this.id_equipe = id_equipe;
+	public void setEquipe(Equipe equipe) {
+		this.equipe = equipe;
 	}
+
 }

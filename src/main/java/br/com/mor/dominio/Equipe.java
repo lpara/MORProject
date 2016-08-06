@@ -4,6 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -22,13 +25,15 @@ public class Equipe {
 	@Column(name="last_name")
 	private String ultimo_nome;
 	
-	@Column(name="address_id")
-	private int id_endereco;
+	@ManyToOne
+	@JoinColumn(name="address_id")
+	private Endereco endereco;
 	
 	private String email;
 	
-	@Column(name="store_id")
-	private int id_loja;
+	@OneToOne
+	@JoinColumn(name="store_id")
+	private Loja loja;
 	
 	@Column(name="active")
 	private Boolean ativo;
@@ -63,12 +68,12 @@ public class Equipe {
 		this.ultimo_nome = ultimo_nome;
 	}
 
-	public int getId_endereco() {
-		return id_endereco;
+	public Endereco getEndereco() {
+		return endereco;
 	}
 
-	public void setId_endereco(int id_endereco) {
-		this.id_endereco = id_endereco;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	public String getEmail() {
@@ -79,12 +84,12 @@ public class Equipe {
 		this.email = email;
 	}
 
-	public int getId_loja() {
-		return id_loja;
+	public Loja getLoja() {
+		return loja;
 	}
 
-	public void setId_loja(int id_loja) {
-		this.id_loja = id_loja;
+	public void setLoja(Loja loja) {
+		this.loja = loja;
 	}
 
 	public Boolean getAtivo() {

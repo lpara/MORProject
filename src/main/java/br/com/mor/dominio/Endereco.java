@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -27,8 +29,9 @@ public class Endereco {
 	@Column(name="district")
 	private String bairro;
 	
-	@Column(name="city_id")
-	private int id_cidade;
+	@ManyToOne
+	@JoinColumn(name="city_id")
+	private Cidade cidade;
 	
 	@Column(name="postal_code")
 	private String cep;
@@ -68,12 +71,12 @@ public class Endereco {
 		this.bairro = bairro;
 	}
 
-	public int getId_cidade() {
-		return id_cidade;
+	public Cidade getCidade() {
+		return cidade;
 	}
 
-	public void setId_cidade(int id_cidade) {
-		this.id_cidade = id_cidade;
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
 	}
 
 	public String getCep() {

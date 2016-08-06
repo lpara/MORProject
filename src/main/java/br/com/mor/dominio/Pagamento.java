@@ -6,6 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -18,11 +21,13 @@ public class Pagamento {
 	@Column(name="payment_id")
 	private int id_pagamento;
 	
-	@Column(name="customer_id")
-	private int id_cliente;
+	@ManyToOne
+	@JoinColumn(name="customer_id")
+	private Cliente cliente;
 	
-	@Column(name="staff_id")
-	private int id_equipe;
+	@OneToOne
+	@JoinColumn(name="staff_id")
+	private Equipe equipe;
 	
 	@Column(name="amount")
 	private Number quantia;
@@ -38,20 +43,20 @@ public class Pagamento {
 		this.id_pagamento = id_pagamento;
 	}
 
-	public int getId_cliente() {
-		return id_cliente;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setId_cliente(int id_cliente) {
-		this.id_cliente = id_cliente;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
-	public int getId_equipe() {
-		return id_equipe;
+	public Equipe getEquipe() {
+		return equipe;
 	}
 
-	public void setId_equipe(int id_equipe) {
-		this.id_equipe = id_equipe;
+	public void setEquipe(Equipe equipe) {
+		this.equipe = equipe;
 	}
 
 	public Number getQuantia() {

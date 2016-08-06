@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -16,11 +18,13 @@ public class Inventario {
 	@Column(name="inventory_id")
 	private int id_inventario;
 	
-	@Column(name="film_id")
-	private int id_filme;
+	@ManyToOne
+	@JoinColumn(name="film_id")
+	private Filme filme;
 	
-	@Column(name="store_id")
-	private int id_loja;
+	@ManyToOne
+	@JoinColumn(name="store_id")
+	private Loja loja;
 
 	public int getId_inventario() {
 		return id_inventario;
@@ -30,21 +34,22 @@ public class Inventario {
 		this.id_inventario = id_inventario;
 	}
 
-	public int getId_filme() {
-		return id_filme;
+	public Filme getFilme() {
+		return filme;
 	}
 
-	public void setId_filme(int id_filme) {
-		this.id_filme = id_filme;
+	public void setFilme(Filme filme) {
+		this.filme = filme;
 	}
 
-	public int getId_loja() {
-		return id_loja;
+	public Loja getLoja() {
+		return loja;
 	}
 
-	public void setId_loja(int id_loja) {
-		this.id_loja = id_loja;
+	public void setLoja(Loja loja) {
+		this.loja = loja;
 	}
+
 	
 	
 }

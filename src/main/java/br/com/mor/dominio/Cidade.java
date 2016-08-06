@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -21,8 +23,9 @@ public class Cidade {
 	@Column(name="city")
 	private String nome_cidade;
 	
-	@Column(name="country_id")
-	private int id_pais;
+	@ManyToOne
+	@JoinColumn(name="country_id")
+	private Pais pais;
 
 	public int getId_cidade() {
 		return id_cidade;
@@ -40,11 +43,11 @@ public class Cidade {
 		this.nome_cidade = nome_cidade;
 	}
 
-	public int getId_pais() {
-		return id_pais;
+	public Pais getPais() {
+		return pais;
 	}
 
-	public void setId_pais(int id_pais) {
-		this.id_pais = id_pais;
+	public void setPais(Pais pais) {
+		this.pais = pais;
 	}
 }
