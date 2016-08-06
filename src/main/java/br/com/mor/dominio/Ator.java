@@ -1,11 +1,14 @@
 package br.com.mor.dominio;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Table(name="actor")
 public class Ator {
@@ -21,6 +24,9 @@ public class Ator {
 	
 	@Column(name="last_name")
 	private String ultimo_nome;
+	
+	@Transient
+	private List<Filme> filmes;
 
 	public int getId_ator() {
 		return id_ator;
@@ -44,6 +50,14 @@ public class Ator {
 
 	public void setUltimo_nome(String ultimo_nome) {
 		this.ultimo_nome = ultimo_nome;
+	}
+
+	public List<Filme> getFilmes() {
+		return filmes;
+	}
+
+	public void setFilmes(List<Filme> filmes) {
+		this.filmes = filmes;
 	}
 	
 }

@@ -1,11 +1,16 @@
 package br.com.mor.dominio;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Table(name="film")
 public class Filme {
@@ -25,8 +30,9 @@ public class Filme {
 	@Column(name="release_year")
 	private int ano_lancamento;
 	
-	@Column(name="language_id")
-	private int id_idioma;
+	@ManyToOne
+	@JoinColumn(name="language_id")
+	private Idioma idioma;
 	
 	@Column(name="rental_duration")
 	private int duracao_aluguel;
@@ -39,6 +45,12 @@ public class Filme {
 	
 	@Column(name="replacement_cost")
 	private Number custo_reposicao;
+	
+	@Transient
+	private Categoria categoria;
+	
+	@Transient
+	private List<Ator> atores;
 
 	public int getId_filme() {
 		return id_filme;
@@ -72,12 +84,12 @@ public class Filme {
 		this.ano_lancamento = ano_lancamento;
 	}
 
-	public int getId_idioma() {
-		return id_idioma;
+	public Idioma getIdioma() {
+		return idioma;
 	}
 
-	public void setId_idioma(int id_idioma) {
-		this.id_idioma = id_idioma;
+	public void setIdioma(Idioma idioma) {
+		this.idioma = idioma;
 	}
 
 	public int getDuracao_aluguel() {
@@ -110,6 +122,22 @@ public class Filme {
 
 	public void setCusto_reposicao(Number custo_reposicao) {
 		this.custo_reposicao = custo_reposicao;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public List<Ator> getAtores() {
+		return atores;
+	}
+
+	public void setAtores(List<Ator> atores) {
+		this.atores = atores;
 	}
 	
 }
