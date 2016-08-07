@@ -5,7 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   
   <dependencies>
-  <!-- http://mvnrepository.com/artifact/org.postgresql/postgresql -->
+	<!-- http://mvnrepository.com/artifact/org.postgresql/postgresql -->
 	<dependency>
 	    <groupId>org.postgresql</groupId>
 	    <artifactId>postgresql</artifactId>
@@ -13,7 +13,7 @@
 	</dependency>
  	<dependency>
 		<groupId>org.hibernate</groupId>
-		<artifactId>hibernate-core</artifactId>
+		<artifactId>hibernate-c3p0</artifactId>
 		<version>5.2.0.Final</version>
   	</dependency>
   </dependencies>
