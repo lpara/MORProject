@@ -7,6 +7,7 @@ import javax.persistence.criteria.CriteriaQuery;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 /**
  * 
@@ -50,9 +51,11 @@ public class GenericDAO<T> implements DAO<T,Long> {
 
 	
 	public List<T> buscar() { 
+		Transaction tx = getCurrentSession().beginTransaction();  
 		CriteriaBuilder builder = getCurrentSession().getCriteriaBuilder();			
 		CriteriaQuery<T> criteria = builder.createQuery(dominio);			
 		criteria.from(dominio);
+		tx.commit();
 		return getCurrentSession().createQuery(criteria).getResultList();	
 	}
 
