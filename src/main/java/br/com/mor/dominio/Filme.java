@@ -7,7 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -46,8 +49,13 @@ public class Filme {
 	@Column(name="replacement_cost")
 	private Number custo_reposicao;
 	
-	@Transient
+	@OneToOne
+	@JoinColumn(name="category_id")
 	private Categoria categoria;
+	
+	@ManyToOne
+	@JoinColumn(name="actor_id")
+	private Ator ator;
 	
 	@Transient
 	private List<Ator> atores;
@@ -130,6 +138,14 @@ public class Filme {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	public Ator getAtor() {
+		return ator;
+	}
+
+	public void setAtor(Ator ator) {
+		this.ator = ator;
 	}
 
 	public List<Ator> getAtores() {

@@ -4,10 +4,11 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author lucas.oliveira
+ * @author Lucas 
+ * @author Luan 
  *
  * @param <T> - Entidade Persistente
- * @param <ID> - Chave Primária
+ * @param <ID> - Chave Primaria
  */
 public interface DAO <T, ID extends Serializable> {
 
