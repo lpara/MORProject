@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -52,12 +53,16 @@ public class Filme {
 	private Number custo_reposicao;
 	
 	@OneToOne
-	@JoinColumn(name="category_id")
+	@JoinTable(name="film_category", 
+	joinColumns=@JoinColumn(name="film_id"),
+	inverseJoinColumns=@JoinColumn(name="category_id"))
 	private Categoria categoria;
 	
-	@OneToMany
-	@JoinColumn(name="actor_id")
-	private Ator ator;
+	@ManyToMany
+	@JoinTable(name="film_actor", 
+	joinColumns=@JoinColumn(name="film_id"),
+	inverseJoinColumns=@JoinColumn(name="actor_id"))
+	private List<Ator> atores;
 	
 	public int getId_filme() {
 		return id_filme;
@@ -139,12 +144,20 @@ public class Filme {
 		this.categoria = categoria;
 	}
 
-	public Ator getAtor() {
+	public List<Ator> getAtores() {
+		return atores;
+	}
+
+	public void setAtores(List<Ator> atores) {
+		this.atores = atores;
+	}
+
+/*	public Ator getAtor() {
 		return ator;
 	}
 
 	public void setAtor(Ator ator) {
 		this.ator = ator;
-	}
+	}*/
 
 }

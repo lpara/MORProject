@@ -23,10 +23,6 @@ public class Categoria {
 	
 	@Column(name="name")
 	private String nome;
-	
-	@OneToOne
-	@JoinColumn(name="film_id")
-	private Filme filme;
 
 	public int getIdCategoria() {
 		return id_categoria;
@@ -44,11 +40,11 @@ public class Categoria {
 		this.nome = nome;
 	}
 
-	public Filme getFilme() {
+/*	public Filme getFilme() {
 		return filme;
 	}
 
 	public void setFilme(Filme filme) {
 		this.filme = filme;
-	}
+	}*/
 }
