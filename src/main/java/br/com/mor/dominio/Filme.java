@@ -3,6 +3,7 @@ package br.com.mor.dominio;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +16,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+@Entity
 @Table(name="film")
 public class Filme {
 
@@ -53,13 +55,10 @@ public class Filme {
 	@JoinColumn(name="category_id")
 	private Categoria categoria;
 	
-	@ManyToOne
+	@OneToMany
 	@JoinColumn(name="actor_id")
 	private Ator ator;
 	
-	@Transient
-	private List<Ator> atores;
-
 	public int getId_filme() {
 		return id_filme;
 	}
@@ -148,12 +147,4 @@ public class Filme {
 		this.ator = ator;
 	}
 
-	public List<Ator> getAtores() {
-		return atores;
-	}
-
-	public void setAtores(List<Ator> atores) {
-		this.atores = atores;
-	}
-	
 }
