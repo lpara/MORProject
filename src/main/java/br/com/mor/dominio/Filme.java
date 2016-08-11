@@ -11,16 +11,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name="film")
 public class Filme {
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="filme_seq")
 	@SequenceGenerator(name="filme_seq", sequenceName="film_film_id_seq")
@@ -44,13 +42,13 @@ public class Filme {
 	private int duracao_aluguel;
 	
 	@Column(name="rental_rate")
-	private Number taxa_aluguel;
+	private double taxa_aluguel;
 	
 	@Column(name="length")
 	private int duracao;
 	
 	@Column(name="replacement_cost")
-	private Number custo_reposicao;
+	private double custo_reposicao;
 	
 	@OneToOne
 	@JoinTable(name="film_category", 
@@ -112,11 +110,11 @@ public class Filme {
 		this.duracao_aluguel = duracao_aluguel;
 	}
 
-	public Number getTaxa_aluguel() {
+	public double getTaxa_aluguel() {
 		return taxa_aluguel;
 	}
 
-	public void setTaxa_aluguel(Number taxa_aluguel) {
+	public void setTaxa_aluguel(double taxa_aluguel) {
 		this.taxa_aluguel = taxa_aluguel;
 	}
 
@@ -128,11 +126,11 @@ public class Filme {
 		this.duracao = duracao;
 	}
 
-	public Number getCusto_reposicao() {
+	public double getCusto_reposicao() {
 		return custo_reposicao;
 	}
 
-	public void setCusto_reposicao(Number custo_reposicao) {
+	public void setCusto_reposicao(double custo_reposicao) {
 		this.custo_reposicao = custo_reposicao;
 	}
 

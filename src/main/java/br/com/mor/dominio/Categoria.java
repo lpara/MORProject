@@ -1,15 +1,14 @@
 package br.com.mor.dominio;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name="category")
@@ -24,6 +23,9 @@ public class Categoria {
 	@Column(name="name")
 	private String nome;
 
+	@OneToOne(mappedBy="categoria")
+	private Filme filme;
+	
 	public int getIdCategoria() {
 		return id_categoria;
 	}
@@ -40,11 +42,11 @@ public class Categoria {
 		this.nome = nome;
 	}
 
-/*	public Filme getFilme() {
+	public Filme getFilme() {
 		return filme;
 	}
 
 	public void setFilme(Filme filme) {
 		this.filme = filme;
-	}*/
+	}
 }

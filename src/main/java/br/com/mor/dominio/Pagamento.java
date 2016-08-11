@@ -1,5 +1,6 @@
 package br.com.mor.dominio;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -35,7 +36,7 @@ public class Pagamento {
 	private Number quantia;
 	
 	@Column(name="payment_date")
-	private Date data_pagamento;
+	private Timestamp data_pagamento;
 
 	public int getId_pagamento() {
 		return id_pagamento;
@@ -69,11 +70,11 @@ public class Pagamento {
 		this.quantia = quantia;
 	}
 
-	public Date getData_pagamento() {
+	public Timestamp getData_pagamento() {
 		return data_pagamento;
 	}
 
-	public void setData_pagamento(Date dia_pagamento) {
+	public void setData_pagamento(Timestamp dia_pagamento) {
 		this.data_pagamento = dia_pagamento;
 	}
 }

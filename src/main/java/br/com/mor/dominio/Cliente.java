@@ -1,5 +1,6 @@
 package br.com.mor.dominio;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -44,7 +45,7 @@ public class Cliente {
 	private boolean ativo;
 	
 	@Column(name="create_date")
-	private Date data_cadastro;
+	private Timestamp data_cadastro;
 
 	public int getId_cliente() {
 		return id_cliente;
@@ -102,11 +103,11 @@ public class Cliente {
 		this.ativo = ativo;
 	}
 
-	public Date getData_cadastro() {
+	public Timestamp getData_cadastro() {
 		return data_cadastro;
 	}
 
-	public void setData_cadastro(Date data_cadastro) {
+	public void setData_cadastro(Timestamp data_cadastro) {
 		this.data_cadastro = data_cadastro;
 	}
 	

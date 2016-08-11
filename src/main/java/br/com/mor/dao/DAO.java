@@ -1,6 +1,4 @@
 package br.com.mor.dao;
-
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +8,7 @@ import java.util.List;
  * @param <T> - Entidade Persistente
  * @param <ID> - Chave Primaria
  */
-public interface DAO <T, ID extends Serializable> {
+public interface DAO <T, ID> {
 
 	T salvar(T entidade);
 	

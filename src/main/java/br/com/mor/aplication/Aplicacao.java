@@ -22,11 +22,17 @@ public class Aplicacao {
 	        List<Ator> atores = atorService.buscarAtoresEFilmes();
 	        
 	        for(Ator ator : atores){
-	            System.out.println("Ator: "+ ator.getPrimeiro_nome() );
-	            /*for(Filme filme : ator.getFilme()){
-	                System.out.println(ator.getPrimeiro_nome());
-	            }*/
-	            
+	        	System.out.println("Ator: "+ ator.getPrimeiro_nome());
+	        	System.out.println("Filmes: " );
+	        	System.out.println("-----------------------------------------------------");
+	            for(Filme filme : ator.getFilme()){		            
+	            	if(filme != null){
+	            		System.out.println(filme.getTitulo());
+	            		System.out.println("Categoria: " + filme.getCategoria().getNome());
+	            	}
+	            	
+	            }
+	           System.out.println("--------------------------------------------------------"); 
 	        }
 	    }
 

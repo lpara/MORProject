@@ -13,6 +13,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.sun.jmx.snmp.Timestamp;
+
 @Entity
 @Table(name="rental")
 public class Aluguel {
@@ -24,7 +26,7 @@ public class Aluguel {
 	private int id_aluguel;
 	
 	@Column(name="rental_date")
-	private Date data_aluguel;
+	private Timestamp data_aluguel;
 	
 	@OneToOne
 	@JoinColumn(name="inventory_id")
@@ -35,7 +37,7 @@ public class Aluguel {
 	private Cliente cliente;
 	
 	@Column(name="return_date")
-	private Date data_devolucao;
+	private Timestamp data_devolucao;
 	
 	@ManyToOne
 	@JoinColumn(name="staff_id")
@@ -49,11 +51,11 @@ public class Aluguel {
 		this.id_aluguel = id_aluguel;
 	}
 
-	public Date getData_aluguel() {
+	public Timestamp getData_aluguel() {
 		return data_aluguel;
 	}
 
-	public void setData_aluguel(Date data_aluguel) {
+	public void setData_aluguel(Timestamp data_aluguel) {
 		this.data_aluguel = data_aluguel;
 	}
 
@@ -73,11 +75,11 @@ public class Aluguel {
 		this.cliente = cliente;
 	}
 
-	public Date getData_devolucao() {
+	public Timestamp getData_devolucao() {
 		return data_devolucao;
 	}
 
-	public void setData_devolucao(Date data_devolucao) {
+	public void setData_devolucao(Timestamp data_devolucao) {
 		this.data_devolucao = data_devolucao;
 	}
 
