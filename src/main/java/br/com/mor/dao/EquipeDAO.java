@@ -18,7 +18,6 @@ public class EquipeDAO extends GenericDAO<Equipe> {
         Equipe result = new Equipe();
         
         String projecao = "e";
-        //String projecao = "e.primeiro_nome, e.ultimo_nome";
         String consulta = "select "+projecao+" from Equipe e "
                 + "inner join e.endereco "
                 + "inner join e.endereco.cidade "
