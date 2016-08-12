@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="category")
@@ -23,7 +24,7 @@ public class Categoria {
 	@Column(name="name")
 	private String nome;
 
-	@OneToOne(mappedBy="categoria")
+	@Transient
 	private Filme filme;
 	
 	public int getIdCategoria() {

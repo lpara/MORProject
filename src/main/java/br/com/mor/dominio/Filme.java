@@ -9,8 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -38,6 +38,9 @@ public class Filme {
 	@JoinColumn(name="language_id")
 	private Idioma idioma;
 	
+//	@Transient
+//	private Idioma idioma;
+	
 	@Column(name="rental_duration")
 	private int duracao_aluguel;
 	
@@ -56,10 +59,16 @@ public class Filme {
 	inverseJoinColumns=@JoinColumn(name="category_id"))
 	private Categoria categoria;
 	
-	@ManyToMany
-	@JoinTable(name="film_actor", 
-	joinColumns=@JoinColumn(name="film_id"),
-	inverseJoinColumns=@JoinColumn(name="actor_id"))
+//	@Transient
+//	private Categoria categoria;
+	
+//	@OneToMany
+//	@JoinTable(name="film_actor", 
+//	joinColumns=@JoinColumn(name="film_id"),
+//	inverseJoinColumns=@JoinColumn(name="actor_id"))
+//	private List<Ator> atores;
+	
+	@OneToMany(mappedBy="filmes")
 	private List<Ator> atores;
 	
 	public int getId_filme() {
