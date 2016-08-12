@@ -21,7 +21,7 @@ public class Endereco {
 	private int id_endereco;
 	
 	@Column(name="address")
-	private String endereco;
+	private String endereco_principal;
 	
 	@Column(name="address2")
 	private String endereco_secundario;
@@ -47,12 +47,12 @@ public class Endereco {
 		this.id_endereco = id_endereco;
 	}
 
-	public String getEndereco() {
-		return endereco;
+	public String getEndereco_principal() {
+		return endereco_principal;
 	}
 
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
+	public void setEndereco_principal(String endereco_principal) {
+		this.endereco_principal = endereco_principal;
 	}
 
 	public String getEndereco_secundario() {
