@@ -30,7 +30,8 @@ public class AtorDAO extends GenericDAO<Ator> {
         String consulta = "select ator from Ator ator ";
         Query q = session.createQuery(consulta, Ator.class);
         @SuppressWarnings("unchecked")
-        List<Ator> result = (List<Ator>) q.getResultList(); 
+        List<Ator> result = (List<Ator>) q.getResultList();
+        session.getTransaction().commit();
         return result;
         
         

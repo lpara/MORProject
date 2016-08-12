@@ -10,22 +10,28 @@ import org.hibernate.SessionFactory;
 
 import br.com.mor.dao.AtorDAO;
 import br.com.mor.dao.EquipeDAO;
+import br.com.mor.dao.InventarioService;
 import br.com.mor.dao.SessionFactoryHolder;
 import br.com.mor.dominio.Ator;
 import br.com.mor.dominio.Categoria;
 import br.com.mor.dominio.Equipe;
 import br.com.mor.dominio.Filme;
+import br.com.mor.dominio.Inventario;
 
 public class Aplicacao {
 
 		public static void main(String[] args) {
-	        //Problema 1
+	       /* //Problema 1
 			System.out.println("Resultados do Primeiro Problema:");
 			problema1();
 	        
 	        //Problema 2
-			System.out.println("Resultados do Segundo Problema");
-			problema2();
+			System.out.println("Resultados do Segundo Problema:");
+			problema2();*/
+			
+			//Operação de Negócio
+			System.out.println("Resultados da Operação de Negocio:");
+			operacaoNegocio();
 	        
 	    }
 
@@ -90,5 +96,21 @@ public class Aplicacao {
 	        	System.out.println("--------------------------------------------------------");
 	        }
 	            
+		}
+		
+		static void operacaoNegocio(){
+			InventarioService inventServ = new InventarioService();
+			List<Inventario> result = new ArrayList<Inventario>();
+			
+			result = inventServ.buscarFilmeEmEstoque(1, 1);
+			for(Inventario inventUm : result){
+				System.out.println("ID Inventário: "+ inventUm.getId_inventario()+"; Loja: "+inventUm.getLoja().getId_loja());;
+			}
+			
+			System.out.println("------------------------------------------------------------");
+			result = inventServ.buscarFilmeEmEstoque(1, 2);
+			for(Inventario inventNovo : result){
+				System.out.println("ID Inventário: "+ inventNovo.getId_inventario()+"; Loja: "+inventNovo.getLoja().getId_loja());;
+			}
 		}
 }
