@@ -1,7 +1,7 @@
 package br.com.mor.dominio;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,7 +24,7 @@ public class Pagamento {
 	@Column(name="payment_id")
 	private int id_pagamento;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="customer_id")
 	private Cliente cliente;
 	
@@ -33,11 +33,15 @@ public class Pagamento {
 	private Equipe equipe;
 	
 	@Column(name="amount")
-	private Number quantia;
+	private BigDecimal quantia;
 	
 	@Column(name="payment_date")
 	private Timestamp data_pagamento;
-
+	
+	@ManyToOne	
+	@JoinColumn(name="rental_id")
+	private Aluguel aluguel;
+	
 	public int getId_pagamento() {
 		return id_pagamento;
 	}
@@ -62,19 +66,27 @@ public class Pagamento {
 		this.equipe = equipe;
 	}
 
-	public Number getQuantia() {
-		return quantia;
-	}
-
-	public void setQuantia(Number quantia) {
-		this.quantia = quantia;
-	}
-
 	public Timestamp getData_pagamento() {
 		return data_pagamento;
 	}
 
+	public BigDecimal getQuantia() {
+		return quantia;
+	}
+
+	public void setQuantia(BigDecimal quantia) {
+		this.quantia = quantia;
+	}
+
 	public void setData_pagamento(Timestamp dia_pagamento) {
 		this.data_pagamento = dia_pagamento;
+	}
+	
+	public Aluguel getAluguel() {
+		return aluguel;
+	}
+
+	public void setAluguel(Aluguel aluguel) {
+		this.aluguel = aluguel;
 	}
 }

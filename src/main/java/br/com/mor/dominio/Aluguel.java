@@ -1,6 +1,6 @@
 package br.com.mor.dominio;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +13,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.sun.jmx.snmp.Timestamp;
 
 @Entity
 @Table(name="rental")
@@ -42,7 +41,7 @@ public class Aluguel {
 	@ManyToOne
 	@JoinColumn(name="staff_id")
 	private Equipe equipe;
-
+	
 	public int getId_aluguel() {
 		return id_aluguel;
 	}

@@ -11,27 +11,33 @@ import org.hibernate.SessionFactory;
 import br.com.mor.dao.AtorDAO;
 import br.com.mor.dao.EquipeDAO;
 import br.com.mor.dao.InventarioService;
+import br.com.mor.dao.LojaDAO;
 import br.com.mor.dao.SessionFactoryHolder;
 import br.com.mor.dominio.Ator;
 import br.com.mor.dominio.Categoria;
 import br.com.mor.dominio.Equipe;
 import br.com.mor.dominio.Filme;
 import br.com.mor.dominio.Inventario;
+import br.com.mor.dominio.Loja;
 
 public class Aplicacao {
 
 		public static void main(String[] args) {
-	       /* //Problema 1
+	        //Problema 1
 			System.out.println("Resultados do Primeiro Problema:");
 			problema1();
 	        
 	        //Problema 2
 			System.out.println("Resultados do Segundo Problema:");
-			problema2();*/
+			problema2();
+			
+	        //Problema 3
+//			System.out.println("Resultados do Tereceiro Problema:");
+//			problema3();
 			
 			//Operação de Negócio
-			System.out.println("Resultados da Operação de Negocio:");
-			operacaoNegocio();
+//			System.out.println("Resultados da Operação de Negocio:");
+//			operacaoNegocio();
 	        
 	    }
 
@@ -96,6 +102,23 @@ public class Aplicacao {
 	        	System.out.println("--------------------------------------------------------");
 	        }
 	            
+		}
+		
+		/**
+		 * Método que execulta a lógica que soluciona o terceiro problema do trabalho
+		 * @author Lucas
+		 * @author Luan
+		 */
+		public static void problema3(){
+			
+	        LojaDAO  lojaDAO = new LojaDAO(Loja.class);
+            
+	        List<Object[]> totalCategoria = lojaDAO.buscarVendasLoja(1);
+	        
+	        for(Object[] obj : totalCategoria){
+	        	System.out.println("Categoria: "+ obj[1] + " Total = " + obj[2]);
+	        	System.out.println("-----------------------------------------------------");
+	        }
 		}
 		
 		static void operacaoNegocio(){
