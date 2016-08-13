@@ -15,8 +15,7 @@ public class InventarioService {
      WHERE film_id = $1
      AND store_id = $2
      AND inventory_in_stock(inventory_id); */
-	// TODO - Dendências necessárias (DAOs) aqui
-	public List<Inventario> buscarFilmeEmEstoque(Integer filme, Integer loja){
+	public List<Inventario> buscarFilmeEmEstoque(int filme, int loja){
 		InventarioDAO inventDAO = new InventarioDAO();
 		boolean inventario_in_stock = false;
 		List<Inventario> temp = inventDAO.inventariosPorFilmeELoja(filme, loja);

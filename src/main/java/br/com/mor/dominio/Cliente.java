@@ -20,7 +20,7 @@ public class Cliente {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="cliente_seq")
 	@SequenceGenerator(name="cliente_seq", sequenceName="customer_customer_id_seq")
-	@Column(name="cutomer_id")
+	@Column(name="customer_id")
 	private int id_cliente;
 	
 	//Comentado, pois não está representado no mapeamento das entidades enviado pelo professor

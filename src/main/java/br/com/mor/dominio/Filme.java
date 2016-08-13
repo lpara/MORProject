@@ -38,9 +38,6 @@ public class Filme {
 	@JoinColumn(name="language_id")
 	private Idioma idioma;
 	
-//	@Transient
-//	private Idioma idioma;
-	
 	@Column(name="rental_duration")
 	private int duracao_aluguel;
 	
@@ -58,15 +55,6 @@ public class Filme {
 	joinColumns=@JoinColumn(name="film_id"),
 	inverseJoinColumns=@JoinColumn(name="category_id"))
 	private Categoria categoria;
-	
-//	@Transient
-//	private Categoria categoria;
-	
-//	@OneToMany
-//	@JoinTable(name="film_actor", 
-//	joinColumns=@JoinColumn(name="film_id"),
-//	inverseJoinColumns=@JoinColumn(name="actor_id"))
-//	private List<Ator> atores;
 	
 	@OneToMany(mappedBy="filmes")
 	private List<Ator> atores;
@@ -158,13 +146,5 @@ public class Filme {
 	public void setAtores(List<Ator> atores) {
 		this.atores = atores;
 	}
-
-/*	public Ator getAtor() {
-		return ator;
-	}
-
-	public void setAtor(Ator ator) {
-		this.ator = ator;
-	}*/
 
 }

@@ -17,45 +17,45 @@ public class InventarioDAO extends GenericDAO<Inventario>{
 	}
 
 	public boolean isInventarioEmEstoque(int iventario){
-		List<Aluguel> aluguel1 = new ArrayList<Aluguel>();
-		List<Aluguel> aluguel2 = new ArrayList<Aluguel>();
+		Integer aluguel1 = 0;
+		Integer aluguel2 = 0;
 		
 		aluguel1 = aluguelExistente(iventario);
 		aluguel2 = itemEstaAlugado(iventario);
-		if(aluguel1.size() != 0 || aluguel2.size() > 0){
+		if(aluguel1 != 0 || aluguel2 > 0){
 			return false;
 		}
 		return true;
 	}
 	
-	protected List<Aluguel> aluguelExistente(int inventario){
+	protected Integer aluguelExistente(int inventario){
 		
-		List<Aluguel> al = new ArrayList<Aluguel>();
 		Session session = getCurrentSession();
 		session.getTransaction().begin();
 		String consulta = "select count(a.id_aluguel) from Aluguel a "
-				+ "where a.inventory_id = :id_inventario";
+				+ "where a.inventario.id = :id_inventario";
 		
 		Query q = session.createQuery(consulta);
 		q.setParameter("id_inventario", inventario);
-		al = q.getResultList();
+		Long resultado = (Long)q.getSingleResult();
+		Integer al = resultado.intValue();
 		session.getTransaction().commit();
 
 		return al;
 	}
 	
-	protected List<Aluguel> itemEstaAlugado (int inventario){
+	protected Integer itemEstaAlugado (int inventario){
 		
-		List<Aluguel> al = new ArrayList<Aluguel>();
 		Session session = getCurrentSession();
 		session.getTransaction().begin();
 		String novaConsulta = "select count(a.id_aluguel) from Aluguel a "
-				+ "where a.inventory_id = :inventario"
+				+ "where a.inventario.id = :inventario "
 				+ "and a.data_devolucao is null";
 		
 		Query newQ = session.createQuery(novaConsulta);
 		newQ.setParameter("inventario", inventario);
-		al = newQ.getResultList();
+		Long result = (Long) newQ.getSingleResult();
+		Integer al = result.intValue();
 		session.getTransaction().commit();
 		
 		return al;
@@ -66,8 +66,8 @@ public class InventarioDAO extends GenericDAO<Inventario>{
 		Session session = getCurrentSession();
 		session.getTransaction().begin();
 		String consulta = "select i from Inventario i "
-				+ "where i.filme = :filme"
-				+ "and i.loja = :loja";
+				+ "where i.filme.id = :filme "
+				+ " and i.loja.id = :loja";
 		
 		Query q = session.createQuery(consulta);
 		q.setParameter("filme", idFilme);
@@ -84,7 +84,7 @@ public class InventarioDAO extends GenericDAO<Inventario>{
 		Session session = getCurrentSession();
 		session.getTransaction().begin();
 		String consulta = "select i from Inventario i "
-				+ "where i.filme = :filme";
+				+ "where i.filme.id = :filme";
 		
 		Query q = session.createQuery(consulta);
 		q.setParameter("filme", filme);
