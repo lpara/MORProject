@@ -17,12 +17,10 @@ public class InventarioDAO extends GenericDAO<Inventario>{
 	}
 
 	public boolean isInventarioEmEstoque(int iventario){
-		Integer aluguel1 = 0;
-		Integer aluguel2 = 0;
+		Integer aluguel = 0;
 		
-		aluguel1 = aluguelExistente(iventario);
-		aluguel2 = itemEstaAlugado(iventario);
-		if(aluguel1 != 0 || aluguel2 > 0){
+		aluguel = aluguelExistente(iventario);
+		if(aluguel > 0){
 			return false;
 		}
 		return true;
@@ -41,6 +39,10 @@ public class InventarioDAO extends GenericDAO<Inventario>{
 		Integer al = resultado.intValue();
 		session.getTransaction().commit();
 
+		if(al != 0){
+			al = itemEstaAlugado(inventario);
+		}
+		
 		return al;
 	}
 	
