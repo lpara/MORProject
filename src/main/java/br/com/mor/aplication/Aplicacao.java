@@ -14,7 +14,6 @@ import br.com.mor.dao.InventarioService;
 import br.com.mor.dao.LojaDAO;
 import br.com.mor.dao.SessionFactoryHolder;
 import br.com.mor.dominio.Ator;
-import br.com.mor.dominio.Categoria;
 import br.com.mor.dominio.Equipe;
 import br.com.mor.dominio.Filme;
 import br.com.mor.dominio.Inventario;
@@ -32,12 +31,12 @@ public class Aplicacao {
 			problema2();
 			
 	        //Problema 3
-//			System.out.println("Resultados do Tereceiro Problema:");
-//			problema3();
+			System.out.println("Resultados do Tereceiro Problema:");
+			problema3();
 			
 			//Operação de Negócio
-//			System.out.println("Resultados da Operação de Negocio:");
-//			operacaoNegocio();
+			System.out.println("Resultados da Operação de Negocio:");
+			operacaoNegocio();
 	        
 	    }
 
@@ -59,7 +58,9 @@ public class Aplicacao {
 	            List<Integer> nomesCategorias = new ArrayList<Integer>();
 	        	for(Filme filme : ator.getFilme()){		            
 	            
-	        		if(filme != null && !filmePorGenero.containsKey(filme.getCategoria().getIdCategoria())){
+	        		System.out.println("**Genero: "+filme.getCategoria().getNome());
+	        		System.out.println("**** "+filme.getTitulo());
+	        	/*	if(filme != null && !filmePorGenero.containsKey(filme.getCategoria().getIdCategoria())){
 	        			filmePorGenero.put(filme.getCategoria().getIdCategoria(), filme);
 	        			if(!nomesCategorias.isEmpty() && !nomesCategorias.contains(filme.getCategoria().getIdCategoria())){
 	        				nomesCategorias.add(filme.getCategoria().getIdCategoria());
@@ -70,7 +71,7 @@ public class Aplicacao {
 	        	boolean mudaChave = false;
 	        	for(int i : nomesCategorias){
 	        		
-	        		
+	        		*/
 	        	/*	if( != null){
 	            		System.out.println("**Genero: "+filme.getCategoria().getNome());
 	    	        	System.out.println("****");
@@ -121,6 +122,11 @@ public class Aplicacao {
 	        }
 		}
 		
+		/**
+		 * Método que execulta a lógica que soluciona a operação de negócio.
+		 * @author Lucas
+		 * @author Luan
+		 */
 		static void operacaoNegocio(){
 			InventarioService inventServ = new InventarioService();
 			List<Inventario> result = new ArrayList<Inventario>();

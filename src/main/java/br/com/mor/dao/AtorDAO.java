@@ -27,7 +27,7 @@ public class AtorDAO extends GenericDAO<Ator> {
 		
         session.getTransaction().begin();
         
-        String consulta = "select ator from Ator ator ";
+        String consulta = "select ator from Ator ator order by ator.primeiro_nome";
         Query q = session.createQuery(consulta, Ator.class);
         @SuppressWarnings("unchecked")
         List<Ator> result = (List<Ator>) q.getResultList();
