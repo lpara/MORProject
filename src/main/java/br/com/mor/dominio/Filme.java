@@ -50,7 +50,7 @@ public class Filme {
 	@Column(name="replacement_cost")
 	private double custo_reposicao;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinTable(name="film_category", 
 	joinColumns=@JoinColumn(name="film_id"),
 	inverseJoinColumns=@JoinColumn(name="category_id"))
