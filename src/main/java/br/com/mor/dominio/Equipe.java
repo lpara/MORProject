@@ -11,6 +11,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+/**
+* @author lucas.carvalho | luan.alves
+*/
 @Entity
 @Table(name="staff")
 public class Equipe {
@@ -19,13 +22,13 @@ public class Equipe {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="equipe_seq")
 	@SequenceGenerator(name="equipe_seq", sequenceName="staff_staff_id_seq")
 	@Column(name="staff_id")
-	private int id_equipe;
+	private int id;
 	
 	@Column(name="first_name")
-	private String primeiro_nome;
+	private String primeiroNome;
 	
 	@Column(name="last_name")
-	private String ultimo_nome;
+	private String ultimoNome;
 	
 	@ManyToOne
 	@JoinColumn(name="address_id")
@@ -46,28 +49,28 @@ public class Equipe {
 	@Column(name="password")
 	private String senha;
 
-	public int getId_equipe() {
-		return id_equipe;
+	public int getId() {
+		return id;
 	}
 
-	public void setId_equipe(int id_equipe) {
-		this.id_equipe = id_equipe;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getPrimeiro_nome() {
-		return primeiro_nome;
+	public String getPrimeiroNome() {
+		return primeiroNome;
 	}
 
-	public void setPrimeiro_nome(String primeiro_nome) {
-		this.primeiro_nome = primeiro_nome;
+	public void setPrimeiroNome(String primeiroNome) {
+		this.primeiroNome = primeiroNome;
 	}
 
-	public String getUltimo_nome() {
-		return ultimo_nome;
+	public String getUltimoNome() {
+		return ultimoNome;
 	}
 
-	public void setUltimo_nome(String ultimo_nome) {
-		this.ultimo_nome = ultimo_nome;
+	public void setUltimoNome(String ultimoNome) {
+		this.ultimoNome = ultimoNome;
 	}
 
 	public Endereco getEndereco() {

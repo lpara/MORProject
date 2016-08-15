@@ -13,7 +13,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-
+/**
+* @author lucas.carvalho | luan.alves
+*/
 @Entity
 @Table(name="rental")
 public class Aluguel {
@@ -22,10 +24,10 @@ public class Aluguel {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="aluguel_seq")
 	@SequenceGenerator(name="aluguel_seq", sequenceName="rental_rental_id_seq")
 	@Column(name="rental_id")
-	private int id_aluguel;
+	private int id;
 	
 	@Column(name="rental_date")
-	private Timestamp data_aluguel;
+	private Timestamp dataAluguel;
 	
 	@OneToOne
 	@JoinColumn(name="inventory_id")
@@ -36,26 +38,26 @@ public class Aluguel {
 	private Cliente cliente;
 	
 	@Column(name="return_date")
-	private Timestamp data_devolucao;
+	private Timestamp dataDevolucao;
 	
 	@ManyToOne
 	@JoinColumn(name="staff_id")
 	private Equipe equipe;
 	
-	public int getId_aluguel() {
-		return id_aluguel;
+	public int getId() {
+		return id;
 	}
 
-	public void setId_aluguel(int id_aluguel) {
-		this.id_aluguel = id_aluguel;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public Timestamp getData_aluguel() {
-		return data_aluguel;
+	public Timestamp getDataAluguel() {
+		return dataAluguel;
 	}
 
-	public void setData_aluguel(Timestamp data_aluguel) {
-		this.data_aluguel = data_aluguel;
+	public void setDataAluguel(Timestamp dataAluguel) {
+		this.dataAluguel = dataAluguel;
 	}
 
 	public Inventario getInventario() {
@@ -74,12 +76,12 @@ public class Aluguel {
 		this.cliente = cliente;
 	}
 
-	public Timestamp getData_devolucao() {
-		return data_devolucao;
+	public Timestamp getDataDevolucao() {
+		return dataDevolucao;
 	}
 
-	public void setData_devolucao(Timestamp data_devolucao) {
-		this.data_devolucao = data_devolucao;
+	public void setDataDevolucao(Timestamp dataDevolucao) {
+		this.dataDevolucao = dataDevolucao;
 	}
 
 	public Equipe getEquipe() {

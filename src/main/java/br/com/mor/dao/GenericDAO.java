@@ -11,7 +11,7 @@ import org.hibernate.Transaction;
 
 /**
  * 
- * @author lucas.oliveira
+ * @author lucas.carvalho | luan.carlos
  *
  * @param <T> Tipo do dominio associado ao DAO
  */

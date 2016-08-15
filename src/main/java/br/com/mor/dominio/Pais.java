@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+/**
+* @author lucas.carvalho | luan.alves
+*/
 @Entity
 @Table(name="country")
 public class Pais {
@@ -16,24 +19,24 @@ public class Pais {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="pais_seq")
 	@SequenceGenerator(name="pais_seq", sequenceName="country_country_id_seq")
 	@Column(name="country_id")
-	private int id_pais;
+	private int id;
 	
 	@Column(name="country")
-	private String nome_pais;
+	private String nome;
 
-	public int getId_pais() {
-		return id_pais;
+	public int getId() {
+		return id;
 	}
 
-	public void setId_pais(int id_pais) {
-		this.id_pais = id_pais;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getNome_pais() {
-		return nome_pais;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNome_pais(String nome_pais) {
-		this.nome_pais = nome_pais;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 }

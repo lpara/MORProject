@@ -10,6 +10,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+/**
+* @author lucas.carvalho | luan.alves
+*/
 @Entity
 @Table(name="inventory")
 public class Inventario {
@@ -18,7 +21,7 @@ public class Inventario {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="inventario_seq")
 	@SequenceGenerator(name="inventario_seq", sequenceName="inventory_inventory_id_seq")
 	@Column(name="inventory_id")
-	private int id_inventario;
+	private int id;
 	
 	@ManyToOne
 	@JoinColumn(name="film_id")
@@ -28,12 +31,12 @@ public class Inventario {
 	@JoinColumn(name="store_id")
 	private Loja loja;
 
-	public int getId_inventario() {
-		return id_inventario;
+	public int getId() {
+		return id;
 	}
 
-	public void setId_inventario(int id_inventario) {
-		this.id_inventario = id_inventario;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Filme getFilme() {

@@ -10,31 +10,37 @@ import br.com.mor.dominio.Ator;
 
 /**
 * 
-* @author lucas.procopio / luan.alves
+* @author lucas.carvalho | luan.alves
 *
 * @param <T> Tipo do dominio associado ao DAO
 */
 public class AtorDAO extends GenericDAO<Ator> {
 	
 	
-    public AtorDAO(Class<Ator> dominio) {
-		super(dominio);
+    public AtorDAO() {
+		super(Ator.class);
 	}
 
 	public List<Ator> buscarAtoresEFilmes(){
-		
-		Session session = getCurrentSession();
-		
-        session.getTransaction().begin();
-        
-        String consulta = "select ator from Ator ator order by ator.primeiro_nome";
-        Query q = session.createQuery(consulta, Ator.class);
-        @SuppressWarnings("unchecked")
-        List<Ator> result = (List<Ator>) q.getResultList();
-        session.getTransaction().commit();
-        return result;
-        
-        
+		Session session = null;
+		try{
+			session = getSessionFactory().openSession();
+			     
+	        String consulta = "select ator from Ator ator order by ator.primeiroNome";
+	        Query q = session.createQuery(consulta, Ator.class);
+	        @SuppressWarnings("unchecked")
+	        List<Ator> result = (List<Ator>) q.getResultList();
+	        return result;
+		}catch(Exception e){
+			session.close();
+			e.printStackTrace();
+		}finally{
+			if(session != null && session.isOpen()){
+				session.close();
+				session = null;
+			}
+		}
+        return null;
     }
 
 }

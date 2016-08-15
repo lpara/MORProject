@@ -10,6 +10,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+/**
+* @author lucas.carvalho | luan.alves
+*/
 @Entity
 @Table(name="address")
 public class Endereco {
@@ -18,13 +21,13 @@ public class Endereco {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="endereco_seq")
 	@SequenceGenerator(name="endereco_seq", sequenceName="address_address_id_seq")
 	@Column(name="address_id")
-	private int id_endereco;
+	private int id;
 	
 	@Column(name="address")
-	private String endereco_principal;
+	private String enderecoPrincipal;
 	
 	@Column(name="address2")
-	private String endereco_secundario;
+	private String enderecoSecundario;
 	
 	@Column(name="district")
 	private String bairro;
@@ -39,28 +42,28 @@ public class Endereco {
 	@Column(name="phone")
 	private String telefone;
 
-	public int getId_endereco() {
-		return id_endereco;
+	public int getId() {
+		return id;
 	}
 
-	public void setId_endereco(int id_endereco) {
-		this.id_endereco = id_endereco;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getEndereco_principal() {
-		return endereco_principal;
+	public String getEnderecoPrincipal() {
+		return enderecoPrincipal;
 	}
 
-	public void setEndereco_principal(String endereco_principal) {
-		this.endereco_principal = endereco_principal;
+	public void setEnderecoPrincipal(String enderecoPrincipal) {
+		this.enderecoPrincipal = enderecoPrincipal;
 	}
 
-	public String getEndereco_secundario() {
-		return endereco_secundario;
+	public String getEnderecoSecundario() {
+		return enderecoSecundario;
 	}
 
-	public void setEndereco_secundario(String endereco_secundario) {
-		this.endereco_secundario = endereco_secundario;
+	public void setEnderecoSecundario(String enderecoSecundario) {
+		this.enderecoSecundario = enderecoSecundario;
 	}
 
 	public String getBairro() {

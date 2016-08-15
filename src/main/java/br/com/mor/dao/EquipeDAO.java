@@ -6,6 +6,12 @@ import org.hibernate.Session;
 
 import br.com.mor.dominio.Equipe;
 
+/**
+ * 
+ * @author lucas.carvalho | luan.carlos
+ *
+ * @param <T> Tipo do dominio associado ao DAO
+ */
 public class EquipeDAO extends GenericDAO<Equipe> {
 
 	public EquipeDAO() {
@@ -13,29 +19,31 @@ public class EquipeDAO extends GenericDAO<Equipe> {
 	}
 
 	public Equipe buscarEmpregadoMike(){
-        Session session = getCurrentSession();
-        session.getTransaction().begin();
-        Equipe result = new Equipe();
-        
-        String projecao = "e";
-        String consulta = "select "+projecao+" from Equipe e "
-                + "inner join e.endereco "
-                + "inner join e.endereco.cidade "
-                + "inner join e.endereco.cidade.pais "
-                + "where e.primeiro_nome like :nome and e.ultimo_nome like :ultimoNome";
-        
-        Query q = session.createQuery(consulta);
-        q.setParameter("nome", "Mike"); 
-        q.setParameter("ultimoNome", "Hillyer");
-        result = (Equipe) q.getSingleResult();
-        session.getTransaction().commit();
-        
-        if(result != null)
-        	return result;
-        else
-        	return null;
-        
-        
-        
+		Session session = null;
+		try{
+	        session = getSessionFactory().openSession();
+	        Equipe result = new Equipe();
+	        
+	        String consulta = "select e from Equipe e "
+	                + "inner join e.endereco "
+	                + "inner join e.endereco.cidade "
+	                + "inner join e.endereco.cidade.pais "
+	                + "where e.primeiroNome like :nome and e.ultimoNome like :ultimoNome";
+	        
+	        Query q = session.createQuery(consulta);
+	        q.setParameter("nome", "Mike"); 
+	        q.setParameter("ultimoNome", "Hillyer");
+	        result = (Equipe) q.getSingleResult();
+	        return result;
+		}catch(Exception e){
+			session.close();
+			e.printStackTrace();
+		}finally{
+			if(session != null && session.isOpen()){
+				session.close();
+				session = null;
+			}
+		}
+        return null;
     }
 }

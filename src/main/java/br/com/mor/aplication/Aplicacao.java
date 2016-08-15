@@ -9,30 +9,34 @@ import org.hibernate.SessionFactory;
 
 
 import br.com.mor.dao.AtorDAO;
+import br.com.mor.dao.CategoriaDAO;
 import br.com.mor.dao.EquipeDAO;
 import br.com.mor.dao.InventarioService;
 import br.com.mor.dao.LojaDAO;
 import br.com.mor.dao.SessionFactoryHolder;
 import br.com.mor.dominio.Ator;
+import br.com.mor.dominio.Categoria;
 import br.com.mor.dominio.Equipe;
 import br.com.mor.dominio.Filme;
 import br.com.mor.dominio.Inventario;
 import br.com.mor.dominio.Loja;
-
+/**
+* @author lucas.carvalho | luan.alves
+*/
 public class Aplicacao {
 
 		public static void main(String[] args) {
-	        //Problema 1
+/*	        //Problema 1
 			System.out.println("Resultados do Primeiro Problema:");
-			problema1();
+			problema1();*/
 	        
-	        //Problema 2
+/*	        //Problema 2
 			System.out.println("Resultados do Segundo Problema:");
-			problema2();
+			problema2();*/
 			
-	        //Problema 3
+/*	        //Problema 3
 			System.out.println("Resultados do Tereceiro Problema:");
-			problema3();
+			problema3();*/
 			
 			//Operação de Negócio
 			System.out.println("Resultados da Operação de Negocio:");
@@ -46,38 +50,35 @@ public class Aplicacao {
 		 * @author Luan
 		 */
 		static void problema1() {
-			  @SuppressWarnings("unused")
-			SessionFactory session = SessionFactoryHolder.getSessionFactory();
-	        AtorDAO  atorDAO = new AtorDAO(Ator.class);
-	                
+	        AtorDAO  atorDAO = new AtorDAO();
+	        CategoriaDAO catDAO = new CategoriaDAO();
+	        
 	        List<Ator> atores = atorDAO.buscarAtoresEFilmes();
+	        List<Categoria> categorias = catDAO.buscarCategorias();
+	        boolean catJaImpressa = false;
+	        String filmesDaCategoria = "**** ";
 	        
 	        for(Ator ator : atores){
-	        	System.out.println("Ator: "+ator.getPrimeiro_nome()+" "+ator.getUltimo_nome());
-	            Map<Integer,Filme> filmePorGenero = new HashMap<Integer,Filme>();
-	            List<Integer> nomesCategorias = new ArrayList<Integer>();
-	        	for(Filme filme : ator.getFilme()){		            
-	            
-	        		System.out.println("**Genero: "+filme.getCategoria().getNome());
-	        		System.out.println("**** "+filme.getTitulo());
-	        	/*	if(filme != null && !filmePorGenero.containsKey(filme.getCategoria().getIdCategoria())){
-	        			filmePorGenero.put(filme.getCategoria().getIdCategoria(), filme);
-	        			if(!nomesCategorias.isEmpty() && !nomesCategorias.contains(filme.getCategoria().getIdCategoria())){
-	        				nomesCategorias.add(filme.getCategoria().getIdCategoria());
-	        			}	
+	        	System.out.println("Ator: "+ator.getPrimeiroNome()+" "+ator.getUltimoNome());
+	        	for(Categoria categoria : categorias){		            
+	        		for(Filme filme : ator.getFilme()){
+	        			if(filme.getCategoria().getId() == categoria.getId() && !catJaImpressa){
+	        				System.out.println("**Genero: "+categoria.getNome());
+	    	        		filmesDaCategoria = filmesDaCategoria+filme.getTitulo()+", ";
+	    	        		catJaImpressa = true;
+	        			}else if(filme.getCategoria().getId() == categoria.getId() && catJaImpressa){
+	        				filmesDaCategoria = filmesDaCategoria+filme.getTitulo()+", ";
+	        			}else{
+	        				continue;
+	        			}
 	        		}
-	        		
-	        	}
-	        	boolean mudaChave = false;
-	        	for(int i : nomesCategorias){
-	        		
-	        		*/
-	        	/*	if( != null){
-	            		System.out.println("**Genero: "+filme.getCategoria().getNome());
-	    	        	System.out.println("****");
-	            	}*/
-	        	}
-	            
+	        		if(catJaImpressa){
+	        			filmesDaCategoria = filmesDaCategoria.substring(0, filmesDaCategoria.length()-2);
+	        			System.out.println(filmesDaCategoria);
+	        		}
+	        		filmesDaCategoria = "**** ";
+        			catJaImpressa = false;
+	        	} 
 	           System.out.println("--------------------------------------------------------"); 
 	        }
 		}
@@ -88,18 +89,16 @@ public class Aplicacao {
 		 * @author Luan
 		 */
 		static void problema2() {
-			SessionFactory sessionNew = SessionFactoryHolder.getSessionFactory();
-	        EquipeDAO  equipeDao = new EquipeDAO();
-	                
+	        EquipeDAO  equipeDao = new EquipeDAO();          
 	        Equipe eq = equipeDao.buscarEmpregadoMike();
 	        
 	        if(eq != null){
 		        System.out.println("--------------------------------------------------------");
-	        	System.out.println("Nome: '"+eq.getPrimeiro_nome()+" "+eq.getUltimo_nome()+"'");
-	        	System.out.println("Endereço: '" + eq.getEndereco().getEndereco_principal()+"'");
+	        	System.out.println("Nome: '"+eq.getPrimeiroNome()+" "+eq.getUltimoNome()+"'");
+	        	System.out.println("Endereço: '" + eq.getEndereco().getEnderecoPrincipal()+"'");
 	        	System.out.println("Telefone: '" + eq.getEndereco().getTelefone()+"'");
 	        	System.out.println("Cidade: '" + eq.getEndereco().getCidade().getNome_cidade()+"'");
-	        	System.out.println("País: '" + eq.getEndereco().getCidade().getPais().getNome_pais()+"'");
+	        	System.out.println("País: '" + eq.getEndereco().getCidade().getPais().getNome()+"'");
 	        	System.out.println("--------------------------------------------------------");
 	        }
 	            
@@ -111,8 +110,7 @@ public class Aplicacao {
 		 * @author Luan
 		 */
 		public static void problema3(){
-			
-	        LojaDAO  lojaDAO = new LojaDAO(Loja.class);
+	        LojaDAO  lojaDAO = new LojaDAO();
             
 	        List<Object[]> totalCategoria = lojaDAO.buscarVendasLoja(1);
 	        
@@ -133,13 +131,13 @@ public class Aplicacao {
 			
 			result = inventServ.buscarFilmeEmEstoque(1, 1);
 			for(Inventario inventUm : result){
-				System.out.println("ID Inventário: "+ inventUm.getId_inventario()+"; Loja: "+inventUm.getLoja().getId_loja());;
+				System.out.println("ID Inventário: "+ inventUm.getId()+"; Loja: "+inventUm.getLoja().getId());;
 			}
 			
 			System.out.println("------------------------------------------------------------");
 			result = inventServ.buscarFilmeEmEstoque(1, 2);
 			for(Inventario inventNovo : result){
-				System.out.println("ID Inventário: "+ inventNovo.getId_inventario()+"; Loja: "+inventNovo.getLoja().getId_loja());;
+				System.out.println("ID Inventário: "+ inventNovo.getId()+"; Loja: "+inventNovo.getLoja().getId());;
 			}
 		}
 }

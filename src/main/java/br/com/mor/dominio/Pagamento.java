@@ -14,6 +14,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+/**
+* @author lucas.carvalho | luan.alves
+*/
 @Entity
 @Table(name="payment")
 public class Pagamento {
@@ -22,7 +25,7 @@ public class Pagamento {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="pagamento_seq")
 	@SequenceGenerator(name="pagamento_seq", sequenceName="payment_payment_id_seq")
 	@Column(name="payment_id")
-	private int id_pagamento;
+	private int id;
 	
 	@OneToOne
 	@JoinColumn(name="customer_id")
@@ -36,18 +39,18 @@ public class Pagamento {
 	private BigDecimal quantia;
 	
 	@Column(name="payment_date")
-	private Timestamp data_pagamento;
+	private Timestamp dataPagamento;
 	
 	@ManyToOne	
 	@JoinColumn(name="rental_id")
 	private Aluguel aluguel;
 	
-	public int getId_pagamento() {
-		return id_pagamento;
+	public int getId() {
+		return id;
 	}
 
-	public void setId_pagamento(int id_pagamento) {
-		this.id_pagamento = id_pagamento;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Cliente getCliente() {
@@ -66,10 +69,14 @@ public class Pagamento {
 		this.equipe = equipe;
 	}
 
-	public Timestamp getData_pagamento() {
-		return data_pagamento;
+	public Timestamp getDataPagamento() {
+		return dataPagamento;
 	}
 
+	public void setDataPagamento(Timestamp diaPagamento) {
+		this.dataPagamento = diaPagamento;
+	}
+	
 	public BigDecimal getQuantia() {
 		return quantia;
 	}
@@ -78,10 +85,6 @@ public class Pagamento {
 		this.quantia = quantia;
 	}
 
-	public void setData_pagamento(Timestamp dia_pagamento) {
-		this.data_pagamento = dia_pagamento;
-	}
-	
 	public Aluguel getAluguel() {
 		return aluguel;
 	}

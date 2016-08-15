@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+/**
+* @author lucas.carvalho | luan.alves
+*/
 @Entity
 @Table(name="customer")
 public class Cliente {
@@ -20,13 +23,7 @@ public class Cliente {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="cliente_seq")
 	@SequenceGenerator(name="cliente_seq", sequenceName="customer_customer_id_seq")
 	@Column(name="customer_id")
-	private int id_cliente;
-	
-	//Comentado, pois não está representado no mapeamento das entidades enviado pelo professor
-	//e pelas caracteristicas das entidades essa releção seria de ManyToMany que necessitaria de
-	//uma tabela intermediária, coisa que não existe no diagrama.
-	/*@Column(name="store_id")
-	private int id_loja;*/
+	private int id;
 	
 	@Column(name="first_name")
 	private String nome;
@@ -44,23 +41,19 @@ public class Cliente {
 	private boolean ativo;
 	
 	@Column(name="create_date")
-	private Timestamp data_cadastro;
+	private Timestamp dataCadastro;
+	
+	@ManyToOne
+	@JoinColumn(name="store_id")
+	private Loja loja;
 
-	public int getId_cliente() {
-		return id_cliente;
+	public int getId() {
+		return id;
 	}
 
-	public void setId_cliente(int id_cliente) {
-		this.id_cliente = id_cliente;
+	public void setId(int id_cliente) {
+		this.id = id_cliente;
 	}
-
-	/*public int getId_loja() {
-		return id_loja;
-	}
-
-	public void setId_loja(int id_loja) {
-		this.id_loja = id_loja;
-	}*/
 
 	public String getNome() {
 		return nome;
@@ -102,12 +95,20 @@ public class Cliente {
 		this.ativo = ativo;
 	}
 
-	public Timestamp getData_cadastro() {
-		return data_cadastro;
+	public Timestamp getDataCadastro() {
+		return dataCadastro;
 	}
 
-	public void setData_cadastro(Timestamp data_cadastro) {
-		this.data_cadastro = data_cadastro;
+	public void setDataCadastro(Timestamp dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
+	public Loja getLoja() {
+		return loja;
+	}
+
+	public void setLoja(Loja loja) {
+		this.loja = loja;
 	}
 	
 	

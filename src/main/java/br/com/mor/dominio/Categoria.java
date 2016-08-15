@@ -11,6 +11,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+/**
+* @author lucas.carvalho | luan.alves
+*/
 @Entity
 @Table(name="category")
 public class Categoria {
@@ -19,20 +22,17 @@ public class Categoria {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="categoria_seq")
 	@SequenceGenerator(name="categoria_seq", sequenceName="category_category_id_seq")
 	@Column(name="category_id")
-	private int id_categoria;
+	private int id;
 	
 	@Column(name="name")
 	private String nome;
-
-	@Transient
-	private Filme filme;
 	
-	public int getIdCategoria() {
-		return id_categoria;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdCategoria(int id) {
-		this.id_categoria = id;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -42,12 +42,5 @@ public class Categoria {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public Filme getFilme() {
-		return filme;
-	}
-
-	public void setFilme(Filme filme) {
-		this.filme = filme;
-	}
+	
 }

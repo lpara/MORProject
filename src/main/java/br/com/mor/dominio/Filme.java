@@ -15,6 +15,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+/**
+* @author lucas.carvalho | luan.alves
+*/
 @Entity
 @Table(name="film")
 public class Filme {
@@ -23,7 +26,7 @@ public class Filme {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="filme_seq")
 	@SequenceGenerator(name="filme_seq", sequenceName="film_film_id_seq")
 	@Column(name="film_id")
-	private int id_filme;
+	private int id;
 	
 	@Column(name="title")
 	private String titulo;
@@ -32,23 +35,23 @@ public class Filme {
 	private String descricao;
 	
 	@Column(name="release_year")
-	private int ano_lancamento;
+	private int anoLancamento;
 	
 	@ManyToOne
 	@JoinColumn(name="language_id")
 	private Idioma idioma;
 	
 	@Column(name="rental_duration")
-	private int duracao_aluguel;
+	private int duracaoAluguel;
 	
 	@Column(name="rental_rate")
-	private double taxa_aluguel;
+	private double taxaAluguel;
 	
 	@Column(name="length")
 	private int duracao;
 	
 	@Column(name="replacement_cost")
-	private double custo_reposicao;
+	private double custoReposicao;
 	
 	@ManyToOne
 	@JoinTable(name="film_category", 
@@ -59,12 +62,12 @@ public class Filme {
 	@OneToMany(mappedBy="filmes")
 	private List<Ator> atores;
 	
-	public int getId_filme() {
-		return id_filme;
+	public int getId() {
+		return id;
 	}
 
-	public void setId_filme(int id_filme) {
-		this.id_filme = id_filme;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getTitulo() {
@@ -83,12 +86,12 @@ public class Filme {
 		this.descricao = descricao;
 	}
 
-	public int getAno_lancamento() {
-		return ano_lancamento;
+	public int getAnoLancamento() {
+		return anoLancamento;
 	}
 
-	public void setAno_lancamento(int ano_lancamento) {
-		this.ano_lancamento = ano_lancamento;
+	public void setAnoLancamento(int anoLancamento) {
+		this.anoLancamento = anoLancamento;
 	}
 
 	public Idioma getIdioma() {
@@ -99,20 +102,20 @@ public class Filme {
 		this.idioma = idioma;
 	}
 
-	public int getDuracao_aluguel() {
-		return duracao_aluguel;
+	public int getDuracaoAluguel() {
+		return duracaoAluguel;
 	}
 
-	public void setDuracao_aluguel(int duracao_aluguel) {
-		this.duracao_aluguel = duracao_aluguel;
+	public void setDuracaoAluguel(int duracaoAluguel) {
+		this.duracaoAluguel = duracaoAluguel;
 	}
 
-	public double getTaxa_aluguel() {
-		return taxa_aluguel;
+	public double getTaxaAluguel() {
+		return taxaAluguel;
 	}
 
-	public void setTaxa_aluguel(double taxa_aluguel) {
-		this.taxa_aluguel = taxa_aluguel;
+	public void setTaxaAluguel(double taxaAluguel) {
+		this.taxaAluguel = taxaAluguel;
 	}
 
 	public int getDuracao() {
@@ -123,12 +126,12 @@ public class Filme {
 		this.duracao = duracao;
 	}
 
-	public double getCusto_reposicao() {
-		return custo_reposicao;
+	public double getCustoReposicao() {
+		return custoReposicao;
 	}
 
-	public void setCusto_reposicao(double custo_reposicao) {
-		this.custo_reposicao = custo_reposicao;
+	public void setCustoReposicao(double custoReposicao) {
+		this.custoReposicao = custoReposicao;
 	}
 
 	public Categoria getCategoria() {

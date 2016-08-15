@@ -10,15 +10,14 @@ import br.com.mor.dominio.Loja;
 
 /**
  * 
- * @author lucas.procopio / luan.alves
+ * @author lucas.carvalho | luan.alves
  *
- * @param <T>
- *            Tipo do dominio associado ao DAO
+ * @param <T> Tipo do dominio associado ao DAO
  */
 public class LojaDAO extends GenericDAO<Loja> {
 
-	public LojaDAO(Class<Loja> dominio) {
-		super(dominio);
+	public LojaDAO() {
+		super(Loja.class);
 	}
 
 	/*
@@ -31,18 +30,14 @@ public class LojaDAO extends GenericDAO<Loja> {
 		Session session = getCurrentSession();
 		try {
 
-			session.getTransaction().begin();
-
-			String consulta = "select  loja.id_loja, c.nome, SUM(p.quantia) as total    " + " from Pagamento p "
+			String consulta = "select  loja.id, c.nome, SUM(p.quantia) as total    " + " from Pagamento p "
 					+ " join p.aluguel a " + " join a.inventario i " + " join i.filme f " + " join f.categoria c "
-					+ " join a.equipe e " + " join e.loja loja " + " group by loja.id_loja, c.nome "
-					+ " having loja.id_loja = " + id + " order by c.nome ";
+					+ " join a.equipe e " + " join e.loja loja " + " group by loja.id, c.nome "
+					+ " having loja.id = " + id + " order by c.nome ";
 
 			Query q = session.createQuery(consulta);
 			@SuppressWarnings("unchecked")
 			List<Object[]> lista = q.getResultList();
-
-			session.getTransaction().commit();
 
 			return lista;
 		} catch (Exception e) {

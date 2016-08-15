@@ -14,6 +14,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+/**
+* @author lucas.carvalho | luan.alves
+*/
 @Entity
 @Table(name="actor")
 public class Ator {
@@ -22,16 +25,13 @@ public class Ator {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ator_seq")
 	@SequenceGenerator(name="ator_seq", sequenceName="actor_actor_id_seq")
 	@Column(name="actor_id")
-	private int id_ator;
+	private int id;
 	
 	@Column(name="first_name")
-	private String primeiro_nome;
+	private String primeiroNome;
 	
 	@Column(name="last_name")
-	private String ultimo_nome;
-	
-//	@OneToMany(mappedBy="atores")
-//	private List<Filme> filmes;
+	private String ultimoNome;
 	
 	@OneToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="film_actor", 
@@ -39,28 +39,28 @@ public class Ator {
 	inverseJoinColumns=@JoinColumn(name="film_id"))
 	private List<Filme> filmes;
 	
-	public int getId_ator() {
-		return id_ator;
+	public int getId() {
+		return id;
 	}
 
-	public void setId_ator(int id_ator) {
-		this.id_ator = id_ator;
+	public void setId(int idAtor) {
+		this.id = idAtor;
 	}
 
-	public String getPrimeiro_nome() {
-		return primeiro_nome;
+	public String getPrimeiroNome() {
+		return primeiroNome;
 	}
 
-	public void setPrimeiro_nome(String primeiro_nome) {
-		this.primeiro_nome = primeiro_nome;
+	public void setPrimeiroNome(String primeiroNome) {
+		this.primeiroNome = primeiroNome;
 	}
 
-	public String getUltimo_nome() {
-		return ultimo_nome;
+	public String getUltimoNome() {
+		return ultimoNome;
 	}
 
-	public void setUltimo_nome(String ultimo_nome) {
-		this.ultimo_nome = ultimo_nome;
+	public void setUltimoNome(String ultimoNome) {
+		this.ultimoNome = ultimoNome;
 	}
 
 	public List<Filme> getFilme() {

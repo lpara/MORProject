@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+/**
+* @author lucas.carvalho | luan.alves
+*/
 @Entity
 @Table(name="language")
 public class Idioma {
@@ -17,17 +20,17 @@ public class Idioma {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="idioma_seq")
 	@SequenceGenerator(name="idioma_seq", sequenceName="language_language_id_seq")
 	@Column(name="language_id")
-	private int id_idioma;
+	private int id;
 	
 	@Column(name="name")
 	private String nome;
 
-	public int getId_idioma() {
-		return id_idioma;
+	public int getId() {
+		return id;
 	}
 
-	public void setId_idioma(int id_idioma) {
-		this.id_idioma = id_idioma;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNome() {
