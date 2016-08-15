@@ -26,10 +26,9 @@ public class LojaDAO extends GenericDAO<Loja> {
 	 * Deve exibir informações de 16 Categorias.
 	 */
 	public List<Object[]> buscarVendasLoja(Integer id) {
-
-		Session session = getCurrentSession();
+		Session session = null;
 		try {
-
+			session = getSessionFactory().openSession();
 			String consulta = "select  loja.id, c.nome, SUM(p.quantia) as total    " + " from Pagamento p "
 					+ " join p.aluguel a " + " join a.inventario i " + " join i.filme f " + " join f.categoria c "
 					+ " join a.equipe e " + " join e.loja loja " + " group by loja.id, c.nome "
@@ -43,6 +42,11 @@ public class LojaDAO extends GenericDAO<Loja> {
 		} catch (Exception e) {
 			session.getTransaction().rollback();
 			e.printStackTrace();
+		}finally{
+			if(session != null && session.isOpen()){
+				session.close();
+				session = null;
+			}
 		}
 
 		return null;

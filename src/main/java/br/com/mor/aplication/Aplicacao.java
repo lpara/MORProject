@@ -26,17 +26,17 @@ import br.com.mor.dominio.Loja;
 public class Aplicacao {
 
 		public static void main(String[] args) {
-/*	        //Problema 1
+	        //Problema 1
 			System.out.println("Resultados do Primeiro Problema:");
-			problema1();*/
+			problema1();
 	        
-/*	        //Problema 2
+	        //Problema 2
 			System.out.println("Resultados do Segundo Problema:");
-			problema2();*/
+			problema2();
 			
-/*	        //Problema 3
+	        //Problema 3
 			System.out.println("Resultados do Tereceiro Problema:");
-			problema3();*/
+			problema3();
 			
 			//Operação de Negócio
 			System.out.println("Resultados da Operação de Negocio:");
@@ -129,15 +129,9 @@ public class Aplicacao {
 			InventarioService inventServ = new InventarioService();
 			List<Inventario> result = new ArrayList<Inventario>();
 			
-			result = inventServ.buscarFilmeEmEstoque(1, 1);
+			result = inventServ.buscarFilmeEmEstoque(1);
 			for(Inventario inventUm : result){
 				System.out.println("ID Inventário: "+ inventUm.getId()+"; Loja: "+inventUm.getLoja().getId());;
-			}
-			
-			System.out.println("------------------------------------------------------------");
-			result = inventServ.buscarFilmeEmEstoque(1, 2);
-			for(Inventario inventNovo : result){
-				System.out.println("ID Inventário: "+ inventNovo.getId()+"; Loja: "+inventNovo.getLoja().getId());;
 			}
 		}
 }

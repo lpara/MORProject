@@ -8,7 +8,9 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 
 import br.com.mor.dominio.Aluguel;
+import br.com.mor.dominio.Ator;
 import br.com.mor.dominio.Inventario;
+import br.com.mor.dominio.Loja;
 /**
 * 
 * @author lucas.carvalho | luan.alves
@@ -23,72 +25,96 @@ public class InventarioDAO extends GenericDAO<Inventario>{
 
 	public boolean isInventarioEmEstoque(int iventario){
 		Integer aluguel = 0;
+		AluguelDAO aluDao = new AluguelDAO();
 		
-		aluguel = aluguelExistente(iventario);
+		aluguel = aluDao.aluguelExistente(iventario);
 		if(aluguel > 0){
 			return false;
 		}
 		return true;
 	}
 	
-	protected Integer aluguelExistente(int inventario){
-		
-		Session session = getCurrentSession();
-		String consulta = "select count(a.id_aluguel) from Aluguel a "
-				+ "where a.inventario.id = :id_inventario";
-		
-		Query q = session.createQuery(consulta);
-		q.setParameter("id_inventario", inventario);
-		Long resultado = (Long)q.getSingleResult();
-		Integer al = resultado.intValue();
-		if(al != 0){
-			al = itemEstaAlugado(inventario);
-		}
-		
-		return al;
-	}
 	
-	protected Integer itemEstaAlugado (int inventario){
-		
-		Session session = getCurrentSession();
-		String novaConsulta = "select count(a.id_aluguel) from Aluguel a "
-				+ "where a.inventario.id = :inventario "
-				+ "and a.data_devolucao is null";
-		
-		Query newQ = session.createQuery(novaConsulta);
-		newQ.setParameter("inventario", inventario);
-		Long result = (Long) newQ.getSingleResult();
-		Integer al = result.intValue();
-		
-		return al;
+	
+	public List<Loja> buscarLojasPorFilme(int idFilme){
+		Session session = null;
+		List<Loja> result = new ArrayList<Loja>();
+		try{
+			session = getSessionFactory().openSession();
+			     
+	        String consulta = "select i from Inventario i "
+	        		+ "where i.filme.id = :filme";
+	        Query q = session.createQuery(consulta);
+	        q.setParameter("filme", idFilme);
+	        @SuppressWarnings("unchecked")
+	        List<Inventario> inventarios = (List<Inventario>) q.getResultList();
+	        
+	        for(Inventario invent : inventarios){
+	        	if(!result.contains(invent.getLoja())){
+	        		result.add(invent.getLoja());
+	        	}
+	        }
+	        return result;
+		}catch(Exception e){
+			session.close();
+			e.printStackTrace();
+		}finally{
+			if(session != null && session.isOpen()){
+				session.close();
+				session = null;
+			}
+		}
+        return null;
 	}
 	
 	public List<Inventario> inventariosPorFilmeELoja(int idFilme, int idLoja){
-		
-		Session session = getCurrentSession();
-		String consulta = "select i from Inventario i "
-				+ "where i.filme.id = :filme "
-				+ " and i.loja.id = :loja";
-		
-		Query q = session.createQuery(consulta);
-		q.setParameter("filme", idFilme);
-		q.setParameter("loja", idLoja);
-		List<Inventario> inventarios = q.getResultList();
-		
-		return inventarios;
+		Session session = null;
+		try{
+			session = getSessionFactory().openSession();
+			String consulta = "select i from Inventario i "
+					+ "where i.filme.id = :filme "
+					+ " and i.loja.id = :loja";
+			
+			Query q = session.createQuery(consulta);
+			q.setParameter("filme", idFilme);
+			q.setParameter("loja", idLoja);
+			List<Inventario> inventarios = q.getResultList();
+			
+			return inventarios;
+		}catch(Exception e){
+			session.close();
+			e.printStackTrace();
+		}finally{
+			if(session != null && session.isOpen()){
+				session.close();
+				session = null;
+			}
+		}
+		return null;
 	}
 	
 	public List<Inventario> inventariosPorFilme(int filme){
 		List<Inventario> invent = new ArrayList<Inventario>();
-		
-		Session session = getCurrentSession();
-		String consulta = "select i from Inventario i "
-				+ "where i.filme.id = :filme";
-		
-		Query q = session.createQuery(consulta);
-		q.setParameter("filme", filme);
-		invent = q.getResultList();
-		
-		return invent;
+		Session session = null;
+		try{
+			session = getSessionFactory().openSession();
+			String consulta = "select i from Inventario i "
+					+ "where i.filme.id = :filme";
+			
+			Query q = session.createQuery(consulta);
+			q.setParameter("filme", filme);
+			invent = q.getResultList();
+			
+			return invent;
+		}catch(Exception e){
+			session.close();
+			e.printStackTrace();
+		}finally{
+			if(session != null && session.isOpen()){
+				session.close();
+				session = null;
+			}
+		}
+		return null;
 	}
 }
